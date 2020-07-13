@@ -1,0 +1,11 @@
+Package: VKT
+Type: Package
+Title: An implementation of the VKT in a region.
+Version: 0.1.0
+Author: Ricardo Ochoa, Ilse Avalos
+Maintainer: Ricardo Ochoa <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: CC0
+Encoding: UTF-8
+LazyData: true
