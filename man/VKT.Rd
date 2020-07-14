@@ -1,23 +1,21 @@
 \name{VKT}
 \alias{VKT}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 VKT estimation
 }
 \description{
-This function estimate the VJT from a specific area .
+This function estimate the VKT from a specific area.
 }
 \usage{
 VKT(Id, Settlement, df.base, df.assumptions, mode, purpose)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Id}{
   Is the identifier of every MMU (numeric value).
 
 }
   \item{Settlement}{
-  Is the ID identification of every urban category (i.e. distiction between urban and rural, or districts). This should be in numeric value.
+  Is the ID identification of every urban category (I.e. distinction between urban and rural, or districts). This should be in numeric value.
 }
   \item{df.base}{
   Is the table reference that contains the ID and Settlement columns as well as population density and employment density information.
@@ -37,7 +35,7 @@ VKT(Id, Settlement, df.base, df.assumptions, mode, purpose)
 }
 }
 \details{
-Before run this function, the user had to preload the two datasets needed here.
+Before run this function, the user has to load the two datasets needed here.
 }
 \value{
 The daily VKT from a mode of travel and a trip purpose selected.
@@ -48,28 +46,17 @@ The daily VKT from a mode of travel and a trip purpose selected.
 \author{
 Ricardo Ochoa
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 ##----Load data tables need it to run the function ----
-load("Base_table_weekday_CDMX")
-assumption <- write.csv("assumptions_MX")
+data("assumptions_MX")
+data("Base_table_weekday_CDMX")
 
-VKT(Id = base_table_mx$ID, Settlement = base_table_mx$Settlement, df.base=base_table_mx, df.assumptions=assumptions_mx, mode= "Car", purpose = "School")
-
-VKT(mode.trips = 78, distance= 4.06, "Work")
+VKT(Id = base_table_week[1,1], Settlement = base_table_week[1,2], df.base = base_table_week,
+    df.assumptions = assumptions_MX,mode = "Car", purpose = "School")
 
 
 {
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ VKT }
+\keyword{ VKT_function}

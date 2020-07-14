@@ -1,10 +1,13 @@
 Emissions_energy <- function(Id, settlement, df.base, df.assumptions){
 
-
-  df.base["Car.VKT.Wk"]<- VKT(Id, Settlement, df.assumptions, mode= "Car", purpose= "Work")
-  df.base["Bus.VKT.Wk"]<- VKT(Id, Settlement, df.assumptions, mode= "Bus", purpose= "Work")
-  df.base["Car.VKT.Sch"]<- VKT(Id, Settlement, df.assumptions, mode= "Car", purpose= "School")
-  df.base["Bus.VKT.Sch"]<- VKT(Id, Settlement, df.assumptions, mode= "Bus", purpose= "School")
+  df.base[Id,"Car.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+                              df.assumptions=df.assumptions, mode= "Car", purpose= "Work")
+  df.base[Id,"Bus.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+                              df.assumptions=df.assumptions, mode= "Bus", purpose= "Work")
+  df.base[Id,"Car.VKT.Sch"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+                               df.assumptions=df.assumptions, mode= "Car", purpose= "School")
+  df.base[Id,"Bus.VKT.Sch"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+                               df.assumptions=df.assumptions, mode= "Bus", purpose= "School")
   df.base["Car.VKT"] <- df.base["Car.VKT.Wk"] + df.base["Car.VKT.Sch"]
   df.base["Bus.VKT"] <-  df.base["Bus.VKT.Wk"] + df.base["Bus.VKT.Sch"]
   df.base["Daily.VKT"] <- df.base["Car.VKT"] + df.base["Bus.VKT"]
@@ -24,14 +27,14 @@ Emissions_energy <- function(Id, settlement, df.base, df.assumptions){
   df.base["Car.energy.diesel"] <- energy (df.base["Car.VKT"], "Car", "Diesel")
   df.base["Bus.energy.gasoline"] <- energy (df.base["Bus.VKT"], "Bus", "Gasoline")
   df.base["Bus.energy.diesel"] <- energy (df.base["Bus.VKT"], "Bus", "Diesel")
-  df.base["Total.Energy"] <- sum(df.base[c("Car.energy.gasoline", "Car.energy.diesel",
-                                   "Bus.energy.gasoline","Bus.energy.diesel")])
+  df.base[Id,"Total.Energy"] <- sum(df.base[c("Car.energy.gasoline", "Car.energy.diesel",
+                                   "Bus.energy.gasoline","Bus.energy.diesel")], na.rm = T)
 
-  e.gasoline =sum(df.base[c("Car.energy.gasoline", "Bus.energy.gasoline")])*
+  e.gasoline =sum(df.base[c("Car.energy.gasoline", "Bus.energy.gasoline")], na.rm = T)*
     subset(df.assumptions, Category == "Carbon_factor"& Subcategory=="Gasoline")$Value
 
-  e.diesel = sum(df.base[c( "Car.energy.diesel","Bus.energy.diesel")]) *
+  e.diesel = sum(df.base[c( "Car.energy.diesel","Bus.energy.diesel")], na.rm = T) *
     subset(df.assumptions, Category == "Carbon_factor"& Subcategory=="Diesel")$Value
-  df.base["Total.GHG"] <- e.gasoline+e.diesel
+  df.base[Id,"Total.GHG"] <- sum(c(e.gasoline,e.diesel), na.rm = T)
   return(df.base)
 }

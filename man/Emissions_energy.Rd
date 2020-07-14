@@ -1,22 +1,21 @@
 \name{Emissions_energy}
 \alias{Emissions_energy}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
  Estimation of GHG emissions and energy use.
 }
 \description{
-A funtion to estimate the GHG emissions and energy consumption from specific VKT.
+A function to estimate the GHG emissions and energy consumption from specific VKT.
 }
 \usage{
 Emissions_energy(Id, settlement, df.base, df.assumptions)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{Id}{
   Is the identifier of every MMU (numeric value).
 }
-  \item{Settlement}{
-  Is the ID identification of every urban category (i.e. distiction between urban and rural, or districts). This should be in numeric value.
+  \item{settlement}{
+  Is the ID identification of every urban category (I.e. distinction between urban and rural, or districts). This should be in numeric value.
 }
   \item{df.base}{
   Is the table reference that contains the ID and Settlement columns as well as population density and employment density information.
@@ -27,42 +26,41 @@ Emissions_energy(Id, settlement, df.base, df.assumptions)
 
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Incorporate new columns on the table base (df.base).
+The new columns are the following:
+  \item{Car.VKT.Wk}{Total daily VKT from cars with work as purpose trip}
+  \item{Bus.VKT.Wk}{Total daily VKT from public transport with work as purpose trip}
+  \item{Car.VKT.Sch}{Total daily VKT from cars with School as purpose trip}
+  \item{Bus.VKT.Sch}{Total daily VKT from public transport with School as purpose trip}
+  \item{Car.VKT}{Sum of total daily VKT from cars}
+  \item{Bus.VKT}{Sum of total daily VKT from public transport}
+  \item{Daily.VKT}{Sum of total daily VKT from cars and public transport}
+  \item{Car.energy.gasoline}{Energy consumption from cars that use gasoline}
+  \item{Car.energy.diesel}{Energy consumption from cars that use diesel}
+  \item{Bus.energy.gasoline}{Energy consumption from the share of public transport that use gasoline}
+  \item{Bus.energy.diesel}{Energy consumption from the share of public transport  that use diesel}
+  \item{Total.Energy}{Total energy consumption from both fuels and modes}
+  \item{Total.GHG}{GHG emissions from the total energy consumption}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Ricardo Ochoa
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+ \code{\link{VKT}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data("assumptions_MX")
+data("Base_table_weekday_CDMX")
 
-## The function is currently defined as
-function (x)
+GHG <- Emissions_energy(Id= base_table_week[1,1], settlement = base_table_week[1,2],
+                 df.base = base_table_week, df.assumptions = assumptions_MX)
 {
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+\keyword{GHG}
+\keyword{energy}
