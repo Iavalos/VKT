@@ -1,5 +1,4 @@
 Emissions_energy <- function(Id, settlement, df.base, df.assumptions){
-
   df.base[Id,"Car.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
                               df.assumptions=df.assumptions, mode= "Car", purpose= "Work")
   df.base[Id,"Bus.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
@@ -36,5 +35,7 @@ Emissions_energy <- function(Id, settlement, df.base, df.assumptions){
   e.diesel = sum(df.base[c( "Car.energy.diesel","Bus.energy.diesel")], na.rm = T) *
     subset(df.assumptions, Category == "Carbon_factor"& Subcategory=="Diesel")$Value
   df.base[Id,"Total.GHG"] <- sum(c(e.gasoline,e.diesel), na.rm = T)
-  return(df.base)
+  df.base[Id,"ID"]<- Id
+  df.base[Id,"settlement"] <- settlement
+  return(df.base[Id,])
 }

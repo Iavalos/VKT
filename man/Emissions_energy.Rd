@@ -58,6 +58,15 @@ data("Base_table_weekday_CDMX")
 
 GHG <- Emissions_energy(Id= base_table_week[1,1], settlement = base_table_week[1,2],
                  df.base = base_table_week, df.assumptions = assumptions_MX)
+
+#For the whole table
+new.table = data.frame(matrix(ncol=0,nrow=nrow(base_table_week)))
+  for (i in 1:nrow(base_table_week)){
+x <- emissions_energy(Id= base_table_week[i,1], settlement = base_table_week[i,2],
+                   df.base = base_table_week, df.assumptions = assumptions_MX)
+new.table <- rbind(new.table,x)
+  }
+
 {
   }
 }
