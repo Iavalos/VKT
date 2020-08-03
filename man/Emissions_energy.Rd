@@ -50,7 +50,7 @@ Ricardo Ochoa
 
 
 \seealso{
- \code{\link{VKT}}
+ \code{\link{VKT_table}}
 }
 \examples{
 data("assumptions_MX")
@@ -67,11 +67,10 @@ x <- emissions_energy(unique.ID = base_table_week[i,1], location.ID = base_table
                    df.base = base_table_week, df.assumptions = assumptions_MX)
 new.table <- rbind(new.table,x)
 
-print (new.table)
-  }
 
-{
   }
+print (new.table)
+
 }
 
 \keyword{GHG}

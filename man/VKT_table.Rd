@@ -61,10 +61,9 @@ for (i in 1:nrow(base_table_week)){
   new.table <- rbind(new.table,x)
   names(new.table) <- c("VKT")
 
-  print(new.table)
-}
 
-{
-  }
+}
+print(new.table)
+
 }
 \keyword{ VKT_table_function}
