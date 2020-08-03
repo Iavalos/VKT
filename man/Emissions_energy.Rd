@@ -63,7 +63,7 @@ GHG <- Emissions_energy(unique.ID= base_table_week[1,1], location.ID = base_tabl
 
 new.table = data.frame(matrix(ncol=0,nrow=nrow(base_table_week)))
   for (i in 1:nrow(base_table_week)){
-x <- emissions_energy(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,2],
+x <- Emissions_energy(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,2],
                    df.base = base_table_week, df.assumptions = assumptions_MX)
 new.table <- rbind(new.table,x)
 

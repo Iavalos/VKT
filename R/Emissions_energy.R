@@ -26,7 +26,7 @@ Emissions_energy <- function(unique.ID, location.ID, df.base, df.assumptions){
   df.base["Car.energy.diesel"] <- energy (df.base["Car.VKT"], "Car", "Diesel")
   df.base["Bus.energy.gasoline"] <- energy (df.base["Bus.VKT"], "Bus", "Gasoline")
   df.base["Bus.energy.diesel"] <- energy (df.base["Bus.VKT"], "Bus", "Diesel")
-  df.base[Id,"Total.Energy"] <- sum(df.base[c("Car.energy.gasoline", "Car.energy.diesel",
+  df.base[unique.ID,"Total.Energy"] <- sum(df.base[c("Car.energy.gasoline", "Car.energy.diesel",
                                    "Bus.energy.gasoline","Bus.energy.diesel")], na.rm = T)
 
   e.gasoline =sum(df.base[c("Car.energy.gasoline", "Bus.energy.gasoline")], na.rm = T)*
@@ -34,8 +34,8 @@ Emissions_energy <- function(unique.ID, location.ID, df.base, df.assumptions){
 
   e.diesel = sum(df.base[c( "Car.energy.diesel","Bus.energy.diesel")], na.rm = T) *
     subset(df.assumptions, Category == "Carbon_factor"& Subcategory=="Diesel")$Value
-  df.base[Id,"Total.GHG"] <- sum(c(e.gasoline,e.diesel), na.rm = T)
-  df.base[Id,"ID"]<- Id
-  df.base[Id,"settlement"] <- settlement
-  return(df.base[Id,])
+  df.base[unique.ID,"Total.GHG"] <- sum(c(e.gasoline,e.diesel), na.rm = T)
+  df.base[unique.ID,"MMU.ID"]<- unique.ID
+  df.base[unique.ID,"location.ID"] <- location.ID
+  return(df.base[unique.ID,])
 }

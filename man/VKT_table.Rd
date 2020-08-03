@@ -56,7 +56,7 @@ data("Base_table_weekday_CDMX")
 
 new.table = data.frame(matrix(ncol=0,nrow=nrow(base_table_week)))
 for (i in 1:nrow(base_table_week)){
-  x <- VKT_table(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,4], df.base = base_table_week,
+  x <- VKT_table(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,2], df.base = base_table_week,
            df.assumptions = assumptions_MX, mode = "Car", purpose = "School")
   new.table <- rbind(new.table,x)
   names(new.table) <- c("VKT")
