@@ -1,11 +1,11 @@
-Emissions_energy <- function(Id, settlement, df.base, df.assumptions){
-  df.base[Id,"Car.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+Emissions_energy <- function(unique.ID, location.ID, df.base, df.assumptions){
+  df.base[unique.ID,"Car.VKT.Wk"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
                               df.assumptions=df.assumptions, mode= "Car", purpose= "Work")
-  df.base[Id,"Bus.VKT.Wk"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+  df.base[unique.ID,"Bus.VKT.Wk"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
                               df.assumptions=df.assumptions, mode= "Bus", purpose= "Work")
-  df.base[Id,"Car.VKT.Sch"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+  df.base[unique.ID,"Car.VKT.Sch"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
                                df.assumptions=df.assumptions, mode= "Car", purpose= "School")
-  df.base[Id,"Bus.VKT.Sch"]<- VKT(Id = Id, Settlement = settlement, df.base = df.base,
+  df.base[unique.ID,"Bus.VKT.Sch"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
                                df.assumptions=df.assumptions, mode= "Bus", purpose= "School")
   df.base["Car.VKT"] <- df.base["Car.VKT.Wk"] + df.base["Car.VKT.Sch"]
   df.base["Bus.VKT"] <-  df.base["Bus.VKT.Wk"] + df.base["Bus.VKT.Sch"]

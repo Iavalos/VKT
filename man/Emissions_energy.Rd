@@ -7,14 +7,14 @@
 A function to estimate the GHG emissions and energy consumption from specific VKT.
 }
 \usage{
-Emissions_energy(Id, settlement, df.base, df.assumptions)
+Emissions_energy(unique.ID, location.ID, df.base, df.assumptions)
 }
 
 \arguments{
-  \item{Id}{
+  \item{unique.ID}{
   Is the identifier of every MMU (numeric value).
 }
-  \item{settlement}{
+  \item{location.ID}{
   Is the ID identification of every urban category (I.e. distinction between urban and rural, or districts). This should be in numeric value.
 }
   \item{df.base}{
@@ -56,15 +56,18 @@ Ricardo Ochoa
 data("assumptions_MX")
 data("Base_table_weekday_CDMX")
 
-GHG <- Emissions_energy(Id= base_table_week[1,1], settlement = base_table_week[1,2],
+GHG <- Emissions_energy(unique.ID= base_table_week[1,1], location.ID = base_table_week[1,2],
                  df.base = base_table_week, df.assumptions = assumptions_MX)
 
-#For the whole table
+#Estimate the complete information, including VKT, energy consumption and GHG emissions in the complete dataset for Mexico City
+
 new.table = data.frame(matrix(ncol=0,nrow=nrow(base_table_week)))
   for (i in 1:nrow(base_table_week)){
-x <- emissions_energy(Id= base_table_week[i,1], settlement = base_table_week[i,2],
+x <- emissions_energy(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,2],
                    df.base = base_table_week, df.assumptions = assumptions_MX)
 new.table <- rbind(new.table,x)
+
+print (new.table)
   }
 
 {

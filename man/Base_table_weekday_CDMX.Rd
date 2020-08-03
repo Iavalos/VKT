@@ -11,10 +11,10 @@ A database processed with the information required to estimate the VKT, GHG emis
 \format{
   A data frame with 194 observations on the following 4 variables.
   \describe{
-    \item{\code{ID}}{a numeric vector}
-    \item{\code{settlement}}{The ID from the district analysed, which is the minimal mapping unit of this dataset}
-    \item{\code{pop_point}}{Population density of the MMU}
-    \item{\code{jobs_perpo}}{Number of jobs of the MMU}
+    \item{\code{MMU.ID}}{a numeric vector to identify the specific MMU}
+    \item{\code{location.ID}}{An specific ID from the location where the minimal mapping unit is located}
+    \item{\code{population}}{Population density of the MMU}
+    \item{\code{employment}}{Number of jobs of the MMU}
   }
 }
 \details{
