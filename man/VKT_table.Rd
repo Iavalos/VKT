@@ -37,6 +37,11 @@ Is the policy that will intervene in the final VKTs for each MMU. The elasticity
 
 }
 
+  \item{share}{
+If policy is not NA, the user has to especify is this policy will impacted the total MMU (100\%) or just a proportion of the Unit. 
+
+}
+
   \item{Npt}{
     Is the new share of occupancy in a bus or the public transport mode modeled after the incorporation of the policy.
 
@@ -66,7 +71,7 @@ new.table = data.frame(matrix(ncol=0,nrow=nrow(base_table_week)))
 
 for (i in 1:nrow(base_table_week)){
   x <- VKT_table(unique.ID = base_table_week[i,1], location.ID = base_table_week[i,2], df.base = base_table_week,
-           df.assumptions = assumptions_MX, mode = "Car", purpose = "School", policy= NA, Npt= NA)
+           df.assumptions = assumptions_MX, mode = "Car", purpose = "School", policy= NA, share= NA, Npt= NA)
   new.table <- rbind(new.table,x)
   names(new.table) <- c("VKT")
 

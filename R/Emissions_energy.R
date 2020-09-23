@@ -1,12 +1,12 @@
 Emissions_energy <- function(unique.ID, location.ID, df.base, df.assumptions){
   df.base[unique.ID,"Car.VKT.Wk"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
-                              df.assumptions=df.assumptions, mode= "Car", purpose= "Work")
+                              df.assumptions=df.assumptions, mode= "Car", purpose= "Work", policy=NA,share= NA, Npt=NA)
   df.base[unique.ID,"Bus.VKT.Wk"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
-                              df.assumptions=df.assumptions, mode= "Bus", purpose= "Work")
+                              df.assumptions=df.assumptions, mode= "Bus", purpose= "Work", policy=NA,share= NA, Npt=NA)
   df.base[unique.ID,"Car.VKT.Sch"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
-                               df.assumptions=df.assumptions, mode= "Car", purpose= "School")
+                               df.assumptions=df.assumptions, mode= "Car", purpose= "School", policy=NA,share= NA, Npt=NA)
   df.base[unique.ID,"Bus.VKT.Sch"]<- VKT_table(unique.ID = unique.ID, location.ID = location.ID, df.base = df.base,
-                               df.assumptions=df.assumptions, mode= "Bus", purpose= "School")
+                               df.assumptions=df.assumptions, mode= "Bus", purpose= "School", policy=NA,share= NA, Npt=NA)
   df.base["Car.VKT"] <- df.base["Car.VKT.Wk"] + df.base["Car.VKT.Sch"]
   df.base["Bus.VKT"] <-  df.base["Bus.VKT.Wk"] + df.base["Bus.VKT.Sch"]
   df.base["Daily.VKT"] <- df.base["Car.VKT"] + df.base["Bus.VKT"]
